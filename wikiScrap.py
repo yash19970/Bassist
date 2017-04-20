@@ -6,4 +6,15 @@ response = urllib2.urlopen(side_addr)
 html = response.read()
 soup = bs(html,'lxml')
 for div in soup.findAll('div', attrs={'id':'mw-content-text','class':'mw-content-ltr'}):
-    print div.p.text[0:150] #wikipedia data.
+    k= div.p.text[0:150] #wikipedia data.
+flag=0
+k2 = "" 
+for i in k:
+	if i =='(' or i =='[' :
+		flag =1
+	elif i == ')' or i ==']':
+		flag =0
+	elif i !='(' and i!=')' and flag==0:
+		k2= k2+i
+
+print k2 #sentance. 
